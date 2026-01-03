@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="DevOps بالعربي - منصة تدريب عملي على AWS, Docker, Kubernetes, CI/CD" />
+  <title>DevOps بالعربي | Job Ready Platform</title>
+
+  <!-- Open Graph for Facebook share -->
+  <meta property="og:title" content="DevOps بالعربي | Job Ready Platform" />
+  <meta property="og:description" content="تدريب DevOps عملي + مشاريع + متابعة. AWS, Docker, Kubernetes, CI/CD" />
+  <meta property="og:type" content="website" />
+  <!-- ضع رابط صورة كوفر عندك بعد الرفع -->
+  <meta property="og:image" content="cover.png" />
+
+  <style>
+    :root{
+      --bg:#071226;
+      --card:#0d1b33;
+      --muted:#a8b3cf;
+      --text:#eaf0ff;
+      --brand:#46e28d;
+      --brand2:#5aa7ff;
+      --border:rgba(255,255,255,.08);
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(90,167,255,.20), transparent 55%),
+                  radial-gradient(900px 500px at 10% 0%, rgba(70,226,141,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,18,38,.65);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(90,167,255,.95), rgba(70,226,141,.95));
+      box-shadow: 0 10px 25px rgba(70,226,141,.18);
+    }
+    .navlinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+      color:var(--muted); font-weight:600; font-size:14px;
+    }
+    .navlinks a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      gap:8px;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(70,226,141,.95), rgba(90,167,255,.90));
+      border-color: transparent;
+      color:#071226;
+    }
+    .btn.primary:hover{transform: translateY(-1px) scale(1.01)}
+    .hero{
+      padding:54px 0 26px;
+    }
+    .heroGrid{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroMain{padding:26px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(90,167,255,.10);
+      border:1px solid rgba(90,167,255,.18);
+      color: #cfe3ff;
+      font-weight:700; font-size:13px;
+    }
+    h1{
+      margin:14px 0 10px; font-size:42px; line-height:1.2;
+    }
+    .sub{
+      color:var(--muted); font-size:16px; margin:0 0 18px;
+      max-width: 60ch;
+    }
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 18px}
+    .badge{
+      font-size:13px; font-weight:700;
+      color:#dfe8ff;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--border);
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap}
+    .heroSide{padding:18px}
+    .sideBox{padding:18px}
+    .sideTitle{font-weight:900; margin:0 0 8px}
+    .sideList{margin:0; padding:0 18px; color:var(--muted)}
+    .sideList li{margin:8px 0}
+    .stats{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:10px; margin-top:12px;
+    }
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      text-align:center;
+    }
+    .stat b{display:block; font-size:18px}
+    .stat span{color:var(--muted); font-size:12px}
+    section{padding:28px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom:12px;
+    }
+    .sectionHead h2{margin:0; font-size:24px}
+    .sectionHead p{margin:0; color:var(--muted); max-width:70ch}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px}
+    .item{padding:16px}
+    .item h3{margin:0 0 6px; font-size:16px}
+    .item p{margin:0; color:var(--muted); font-size:14px}
+    .curr{
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px;
+    }
+    details{
+      border:1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      padding: 14px 14px;
+    }
+    summary{
+      cursor:pointer; font-weight:900;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{color:var(--muted); margin:10px 0 0; font-size:14px}
+    .pricing{
+      display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px;
+    }
+    .priceCard{padding:18px}
+    .priceTop{display:flex; justify-content:space-between; align-items:center; gap:10px}
+    .tag{
+      font-size:12px; font-weight:900; padding:6px 10px; border-radius:999px;
+      background: rgba(70,226,141,.12);
+      border:1px solid rgba(70,226,141,.20);
+      color:#bff7d7;
+      white-space:nowrap;
+    }
+    .price{
+      font-size:34px; font-weight:1000; margin:10px 0 8px;
+    }
+    .price small{font-size:13px; color:var(--muted); font-weight:700}
+    .ul{
+      margin:0; padding:0 18px; color:var(--muted); font-size:14px
+    }
+    .ul li{margin:8px 0}
+    .faq{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .contact{
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:stretch;
+    }
+    .form{padding:18px}
+    label{display:block; font-size:13px; color:var(--muted); margin:10px 0 6px; font-weight:700}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .fine{color:var(--muted); font-size:12px; margin-top:10px}
+    footer{
+      padding:18px 0 26px; color:var(--muted);
+      border-top:1px solid var(--border);
+      margin-top:20px;
+    }
+    .footerRow{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .note{
+      padding:14px;
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,.16);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns: 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .grid2{grid-template-columns: 1fr}
+      .curr{grid-template-columns: 1fr}
+      .pricing{grid-template-columns: 1fr}
+      .faq{grid-template-columns: 1fr}
+      .contact{grid-template-columns: 1fr}
+      h1{font-size:34px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div>DevOps بالعربي</div>
+          <div class="mono" style="color:var(--muted);font-size:12px">Job Ready Platform</div>
+        </div>
+      </div>
+
+      <nav class="navlinks" aria-label="روابط">
+        <a href="#about">عن المنصة</a>
+        <a href="#curriculum">المحتوى</a>
+        <a href="#pricing">الباقات</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">تواصل</a>
+      </nav>
+
+      <a class="btn primary" href="#contact">احجز مكالمة/رسالة</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <div class="kicker">DevOps بالعربي • تدريب عملي</div>
+          <h1>اتعلّم DevOps بشكل عملي وواضح</h1>
+          <p class="sub">
+            منصة تدريب مركّزة على أهم أدوات السوق: <b>AWS</b> و <b>Docker</b> و <b>Kubernetes</b> و <b>CI/CD</b>.
+            هدفنا إنك تطلع بمشاريع وحلول قابلة للتطبيق.
+          </p>
+
+          <div class="badges">
+            <div class="badge">مشاريع عملية</div>
+            <div class="badge">متابعة + Q&A</div>
+            <div class="badge">مسار واضح</div>
+            <div class="badge">مناسب لـ Backend / SysAdmin</div>
+          </div>
+
+          <div class="ctaRow">
+            <!-- عدّل روابط التواصل هنا -->
+            <a class="btn primary" href="https://wa.me/201000000000" target="_blank" rel="noopener">تواصل واتساب</a>
+            <a class="btn" href="https://t.me/your_channel" target="_blank" rel="noopener">قناة/جروب تيليجرام</a>
+            <a class="btn" href="#pricing">شوف الباقات</a>
+          </div>
+
+          <div style="margin-top:16px" class="note">
+            <b>ملاحظة:</b> بدّل رقم الواتساب ورابط تيليجرام فوق. (هتلاقيهم في نفس الملف)
+          </div>
+        </div>
+
+        <div class="card heroSide">
+          <div class="sideBox">
+            <p class="sideTitle">إيه اللي هتخرج بيه؟</p>
+            <ul class="sideList">
+              <li>فهم عملي لسير العمل DevOps End-to-End</li>
+              <li>بناء Pipeline CI/CD قابل للتطبيق</li>
+              <li>تشغيل Deployments و Monitoring أساسيات</li>
+              <li>مشروع نهائي Portfolio</li>
+            </ul>
+
+            <div class="stats" aria-label="أرقام">
+              <div class="stat"><b>+4</b><span>Modules رئيسية</span></div>
+              <div class="stat"><b>+10</b><span>Labs عملية</span></div>
+              <div class="stat"><b>1</b><span>Final Project</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>عن المنصة</h2>
+        <p>صفحة بسيطة توضح قيمة التدريب وتسهّل على الناس إنها تتواصل معاك بسرعة.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card item">
+          <h3>منهج عملي</h3>
+          <p>شرح مباشر + Labs + تطبيقات على سيناريوهات شبه شغل الشركات.</p>
+        </div>
+        <div class="card item">
+          <h3>مسار واضح</h3>
+          <p>بدون تشتيت: نركّز على أهم الأدوات المطلوبة ونمشي بخطة خطوة بخطوة.</p>
+        </div>
+        <div class="card item">
+          <h3>متابعة</h3>
+          <p>جلسات أسئلة وأجوبة + توجيه في المشاريع + مراجعة شغل المتدرب.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRICULUM -->
+  <section id="curriculum">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>محتوى التدريب</h2>
+        <p>هنا بتحط Outline مختصر. التفاصيل الكتير ممكن تكون في PDF أو بوستات على الفيس.</p>
+      </div>
+
+      <div class="curr">
+        <details class="card">
+          <summary>Module 1: Linux + Networking Basics</summary>
+          <p>Permissions, systemd, logs, ssh, basic networking, troubleshooting.</p>
+        </details>
+        <details class="card">
+          <summary>Module 2: Docker + Containers</summary>
+          <p>Images/containers, Dockerfile, compose, best practices, registry basics.</p>
+        </details>
+        <details class="card">
+          <summary>Module 3: Kubernetes</summary>
+          <p>Pods, deployments, services, ingress basics, configmaps/secrets, helm intro.</p>
+        </details>
+        <details class="card">
+          <summary>Module 4: CI/CD + Cloud (AWS)</summary>
+          <p>Pipelines, GitHub Actions/Jenkins (اختيارك), IAM basics, EC2/VPC overview, deploy flow.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>الباقات</h2>
+        <p>حط 2–3 باقات. لو لسه مش محدد سعر: سيبها “تواصل لمعرفة التفاصيل”.</p>
+      </div>
+
+      <div class="pricing">
+        <div class="card priceCard">
+          <div class="priceTop">
+            <b>Starter</b>
+            <span class="tag">Best for beginners</span>
+          </div>
+          <div class="price">تواصل <small>/ لمعرفة السعر</small></div>
+          <ul class="ul">
+            <li>Access للمحتوى الأساسي</li>
+            <li>Labs أسبوعية</li>
+            <li>Q&A جماعي</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">احجز مكانك</a>
+          </div>
+        </div>
+
+        <div class="card priceCard" style="border-color: rgba(70,226,141,.20)">
+          <div class="priceTop">
+            <b>Pro</b>
+            <span class="tag">Most popular</span>
+          </div>
+          <div class="price">تواصل <small>/ لمعرفة السعر</small></div>
+          <ul class="ul">
+            <li>كل اللي في Starter</li>
+            <li>متابعة على مشروع</li>
+            <li>مراجعة CV/LinkedIn (اختياري)</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">ابدأ دلوقتي</a>
+          </div>
+        </div>
+
+        <div class="card priceCard">
+          <div class="priceTop">
+            <b>1:1 Mentorship</b>
+            <span class="tag">Limited seats</span>
+          </div>
+          <div class="price">تواصل <small>/ لمعرفة السعر</small></div>
+          <ul class="ul">
+            <li>جلسات فردية</li>
+            <li>خطة مخصصة حسب مستواك</li>
+            <li>متابعة أقوى للمشاريع</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">احجز استشارة</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>الأسئلة الشائعة</h2>
+        <p>جاوب عن أهم اعتراضات الناس: أبدأ منين؟ محتاج خبرة؟ هشتغل امتى؟</p>
+      </div>
+
+      <div class="faq">
+        <details class="card">
+          <summary>هل لازم أكون Developer عشان أبدأ DevOps؟</summary>
+          <p>مش شرط، لكن لازم أساسيات Linux + Networking، وبرمجة بسيطة مفيدة جدًا.</p>
+        </details>
+        <details class="card">
+          <summary>هتحتاج كام ساعة أسبوعيًا؟</summary>
+          <p>أفضل نتيجة مع 6–10 ساعات أسبوعيًا (تعلم + تطبيق).</p>
+        </details>
+        <details class="card">
+          <summary>هل التدريب عملي؟</summary>
+          <p>آه: Labs + مشروع نهائي. الهدف Portfolio تقدر تعرضه.</p>
+        </details>
+        <details class="card">
+          <summary>هل في متابعة؟</summary>
+          <p>في Q&A وجروب دعم، وبحسب الباقة في متابعة على المشروع.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>تواصل واحجز</h2>
+        <p>خلي التواصل سهل جدًا: واتساب/تيليجرام + فورم بسيطة.</p>
+      </div>
+
+      <div class="contact">
+        <div class="card form">
+          <h3 style="margin:0 0 6px">ابعت رسالة بسرعة</h3>
+          <p style="margin:0 0 12px; color:var(--muted); font-size:14px">
+            الفورم دي بتفتح الإيميل عندك (Mailto). لو عاوز فورم بتتبعت تلقائيًا قولّي وأظبطه بـ Formspree.
+          </p>
+
+          <!-- Mailto Form -->
+          <form onsubmit="return sendMail(event)">
+            <label>الاسم</label>
+            <input id="name" required placeholder="اسمك" />
+
+            <label>رقم/وسيلة تواصل</label>
+            <input id="contactInfo" required placeholder="واتساب أو تيليجرام" />
+
+            <label>رسالتك</label>
+            <textarea id="msg" required placeholder="عاوز أعرف تفاصيل الباقات / المواعيد..."></textarea>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn primary" type="submit">إرسال</button>
+              <!-- عدّل الروابط هنا -->
+              <a class="btn" href="https://wa.me/201000000000" target="_blank" rel="noopener">واتساب مباشر</a>
+              <a class="btn" href="https://t.me/your_channel" target="_blank" rel="noopener">تيليجرام</a>
+            </div>
+
+            <div class="fine">بدّل: رقم الواتساب + رابط تيليجرام + الإيميل داخل الكود.</div>
+          </form>
+        </div>
+
+        <div class="card form">
+          <h3 style="margin:0 0 6px">بيانات سريعة</h3>
+          <div class="note">
+            <div><b>اسم الصفحة:</b> DevOps بالعربي</div>
+            <div><b>الوصف:</b> تدريب عملي + مشاريع + متابعة</div>
+            <div style="margin-top:10px"><b>روابط:</b></div>
+            <ul class="ul">
+              <li>WhatsApp: غيّر الرقم في الملف</li>
+              <li>Telegram: غيّر الرابط</li>
+              <li>Facebook Page: حط الرابط هنا لو تحب</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:12px" class="note">
+            <b>تجهيز مشاركة الفيس:</b><br/>
+            ارفع صورة باسم <span class="mono">cover.png</span> في نفس الريبو عشان تظهر لما تشارك لينك الموقع.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footerRow">
+      <div>© <span id="y"></span> DevOps بالعربي • Job Ready Platform</div>
+      <div class="mono">Built for GitHub Pages</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  // غيّر الإيميل هنا
+  const TO_EMAIL = "youremail@example.com";
+
+  function sendMail(e){
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const contact = document.getElementById("contactInfo").value.trim();
+    const msg = document.getElementById("msg").value.trim();
+
+    const subject = encodeURIComponent("طلب تفاصيل DevOps بالعربي");
+    const body = encodeURIComponent(
+      `الاسم: ${name}\n` +
+      `وسيلة التواصل: ${contact}\n\n` +
+      `الرسالة:\n${msg}\n`
+    );
+
+    window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    return false;
+  }
+</script>
+</body>
+</html>
